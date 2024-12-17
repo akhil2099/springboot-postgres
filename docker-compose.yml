@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  spring-app:
+    build: .
+    container_name: postgres-demo-app
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/psqldbnew
+      - SPRING_DATASOURCE_USERNAME=psqlnew
+      - SPRING_DATASOURCE_PASSWORD=Password#123
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+    networks:
+      - psqlnew-network
+
+networks:
+  psqlnew-network:
+    external: true
